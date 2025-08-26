@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Rental Form</title>
+  <link rel="stylesheet" href="interface.css" />
+</head>
+<body>
+
+<header>
+  <a href="Interface.html">CAR RENTAL</a>
+  <ul class="nav">
+    <li><a href="admin1.html">Admin</a></li>
+    <li><a href="About.html">About</a></li>
+    <li><a href="Service.html">Service</a></li>
+    <li><a href="Contact.html">Contact</a>
+</li>
+  </ul>            
+</header>
+
+<div class="main">
+  <video src="4.webm" autoplay loop muted></video>
+
+  <div class="content">
+    <div class="form-container">
+      <h2>Book Your Ride</h2>
+      <form onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter Your Name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile Number:</label>
+          <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Mobile Number" pattern="[6-9]{1}[0-9]{9}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="place">Available Places:</label>
+          <select id="place" name="city" required>
+            <option value="" selected disabled hidden>Select a city</option>
+            <option>Bangalore</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Hyderabad</option>
+            <option>Kolkata</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="start-date">From:</label>
+            <input type="date" id="start-date" name="start-date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="end-date">Until:</label>
+            <input type="date" id="end-date" name="end-date" required />
+          </div>
+        </div>
+
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="form-text-container">
+      <h2>Why Choose Us?</h2>
+      <p>
+        We offer the best car rental experience with affordable prices, premium vehicles,
+        and 24/7 customer support. Enjoy a hassle-free booking and smooth rides anywhere
+        in the city. Book with confidence today!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function submitForm(event) {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const mobile = document.getElementById("mobile").value;
+  const city = document.getElementById("place").value;
+  const fromDate = document.getElementById("start-date").value;
+  const toDate = document.getElementById("end-date").value;
+
+  const booking = { name, mobile, city, fromDate, toDate };
+
+  fetch("http://localhost:8080/api/bookings", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(booking)
+  })
+    .then(response => {
+      if (response.ok) {
+        const query = new URLSearchParams({
+          name,
+          mobile,
+          city,
+          "start-date": fromDate,
+          "end-date": toDate
+        }).toString();
+        window.location.href = "Inside.html?" + query;
+      } else {
+        alert("❌ Error saving booking. Please try again.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("🚫 Backend server is not responding.");
+    });
+}
+
+  </script>
+
+  <section class="banner-container">
+    <div class="banner-wrapper">
+      <!-- <img src="l1.png" alt="banner"><img src="l2.png" alt="banner"><img src="l3.png" alt="banner"><section class="banner-container"> -->
+    
+      <img src="asets/logo/l7.png" alt="banner">
+      <img src="asets/logo/l1.png" alt="banner">
+      <img src="asets/logo/l2.png" alt="banner">
+      <img src="asets/logo/l3.png" alt="banner">
+      <img src="asets/logo/l4.png" alt="banner">
+      <img src="asets/logo/l5.png" altl3.png="banner">
+      <img src="asets/logo/l8.png" alt="banner">
+      <img src="asets/logo/l9.png" alt="banner">
+      <img src="asets/logo/l10.png" alt="banner">
+      <img src="asets/logo/l11.png" alt="banner">
+      <img src="asets/logo/l12.png" alt="banner">
+      <img src="asets/logo/l13.png" alt="banner">
+      <img src="asets/logo/l14.png" alt="banner">
+      <img src="asets/logo/l15.png" alt="banner">
+      <img src="asets/logo/l16.png" alt="banner">
+      <img src="asets/logo/l17.png" alt="banner">
+      <img src="asets/logo/l18.png" alt="banner">
+      <img src="asets/logo/l19.png" alt="banner">
+      <img src="asets/logo/l20.png" alt="banner">
+      <img src="asets/logo/l21.png" alt="banner">
+      <img src="asets/logo/l22.png" alt="banner">
+      <img src="asets/logo/l23.png" alt="banner">
+      <img src="asets/logo/l24.png" alt="banner">
+
+      <!-- Repeated set -->
+      <img src="asets/logo/l7.png" alt="banner">
+      <img src="asets/logo/l1.png" alt="banner">
+      <img src="asets/logo/l2.png" alt="banner">
+      <img src="asets/logo/l3.png" alt="banner">
+      <img src="asets/logo/l4.png" alt="banner">
+      <img src="asets/logo/l5.png" altl3.png="banner">
+      <img src="asets/logo/l8.png" alt="banner">
+      <img src="asets/logo/l9.png" alt="banner">
+      <img src="asets/logo/l10.png" alt="banner">
+      <img src="asets/logo/l11.png" alt="banner">
+      <img src="asets/logo/l12.png" alt="banner">
+      <img src="asets/logo/l13.png" alt="banner">
+      <img src="asets/logo/l14.png" alt="banner">
+      <img src="asets/logo/l15.png" alt="banner">
+      <img src="asets/logo/l16.png" alt="banner">
+      <img src="asets/logo/l17.png" alt="banner">
+      <img src="asets/logo/l18.png" alt="banner">
+      <img src="asets/logo/l19.png" alt="banner">
+      <img src="asets/logo/l20.png" alt="banner">
+      <img src="asets/logo/l21.png" alt="banner">
+      <img src="asets/logo/l22.png" alt="banner">
+      <img src="asets/logo/l23.png" alt="banner">
+      <img src="asets/logo/l24.png" alt="banner">
+
+      <!-- add more banners here -->
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

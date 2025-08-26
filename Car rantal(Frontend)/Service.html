@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Car Rental Services</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+    --primary-color: #00aced;
+    --secondary-color: #0084a5;
+    --bg-dark: #111;
+    --bg-card: rgba(34, 34, 34, 0.95);
+    --text-light: #ccc;
+    --text-heading: #00aced;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: var(--text-heading);
+}
+
+p.section-desc {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    color: #bbb;
+    font-size: 16px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+}
+
+.card i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 20px;
+    color: var(--text-heading);
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.card button:hover {
+    background: var(--secondary-color);
+}
+
+/* Pricing Table */
+.pricing-table {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pricing-table h3 {
+    margin-bottom: 10px;
+    color: var(--text-heading);
+}
+
+.pricing-table ul {
+    list-style: none;
+    padding: 0;
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.pricing-table .price {
+    font-size: 24px;
+    color: #fff;
+    margin: 10px 0;
+}
+
+/* Map */
+.map-container {
+    margin-top: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: var(--bg-dark);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+header .logo {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+header .nav {
+    display: flex;
+    gap: 20px;
+}
+
+header .nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header .nav a:hover {
+    color: var(--primary-color);
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<header>
+    <div class="logo">CAR RENTAL</div>
+    <nav class="nav">
+        <a href="Interface.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Service.html">Service</a>
+        <a href="Contact.html">Contact</a>
+    </nav>
+</header>
+
+
+<!-- Services we need  to fix -->
+<section style="background: var(--bg-dark)">
+    <h1>Our Car Rental Services</h1>
+    <p class="section-desc">
+        We provide premium car rental services with a variety of plans to suit every need.
+    </p>
+
+    <div class="container">
+        <div class="card">
+            <i class="fas fa-car"></i>
+            <h2>Daily Rentals</h2>
+            <p>Affordable short-term rentals for your daily needs.</p>
+            <button>Book Now</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-calendar-week"></i>
+            <h2>Weekly/Monthly</h2>
+            <p>Save more on longer bookings, ideal for business trips.</p>
+            <button>Book Now</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-gem"></i>
+            <h2>Luxury Cars</h2>
+            <p>Drive premium vehicles for special occasions or just because.</p>
+            <button>Book Now</button>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing is this part -->
+<section>
+    <h1>Pricing Plans</h1>
+    <p class="section-desc">
+        Transparent and competitive pricing for every customer.
+    </p>
+
+    <div class="container">
+        <div class="pricing-table">
+            <h3>Daily</h3>
+            <div class="price">₹2,000/day</div>
+            <ul>
+                <li>Any car category</li>
+                <li>Basic insurance</li>
+                <li>24/7 support</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+        <div class="pricing-table">
+            <h3>Weekly</h3>
+            <div class="price">₹12,000/week</div>
+            <ul>
+                <li>Any car category</li>
+                <li>Free pickup/drop</li>
+                <li>Priority support</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+        <div class="pricing-table">
+            <h3>Monthly</h3>
+            <div class="price">₹40,000/month</div>
+            <ul>
+                <li>Any car category</li>
+                <li>Unlimited kms</li>
+                <li>Premium insurance</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+    </div>
+</section>
+
+<!-- Branch Map -->
+<section>
+    <h1>Our Branch Location</h1>
+    <p class="section-desc">
+        Visit us at our main office in Bangalore or contact us for more locations.
+    </p>
+
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.238944108223!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670e893e9bf%3A0x402b1bdad9c1b5d4!2sMG%20Road%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1689156732664!5m2!1sen!2sin" 
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+<script>
+
+
+
+// scroll animation
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+cards.forEach(card => {
+    observer.observe(card);
+});
+</script>
+
+</body>
+</html>

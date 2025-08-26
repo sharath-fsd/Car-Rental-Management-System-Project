@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - Full-Stack Developer</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+.main {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.main video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* About Me Box */
+
+
+
+.about-me {
+    opacity: 0;
+    transform: translateY(20px);
+    background: rgba(34, 34, 34, 0.95);
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    animation: fadeSlideIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-me h1 {
+    margin-bottom: 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    color: #00aced;
+    animation: textFadeIn 2s ease-out forwards;
+}
+
+.about-me p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #ddd;
+    animation: textFadeIn 2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 96%;
+    display: flex;
+    opacity: 0.95;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: var(--bg-dark);
+    box-shadow: 0 2px 6px rgba(21, 20, 20, 0.4);
+}
+
+header .logo {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+header .nav {
+    display: flex;
+    gap: 20px;
+}
+
+header .nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header .nav a:hover {
+    color: var(--primary-color);
+}
+
+
+
+
+</style>
+</head>
+<body>
+
+
+<header>
+    <div class="logo">CAR RENTAL</div>
+    <nav class="nav">
+        <a href="Interface.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Service.html">Service</a>
+        <a href="Contact.html">Contact</a>
+    </nav>
+</header>
+
+
+<div class="main">
+    <video src="1.webm" autoplay muted loop></video>
+
+    <div class="about-me">
+        <h1>About Us</h1>
+
+        <h2>Front End Development</h2>
+        <p>
+            Hello! 👋 I’m <strong>Sarath K</strong>, an aspiring <strong>Full-Stack Developer</strong> passionate about crafting seamless web applications that deliver exceptional user experiences.  
+            <br><br>
+            With a foundation in <strong>Electronics & Communication Engineering</strong>, I’ve transitioned my focus to the exciting world of web development, mastering both <strong>front-end and back-end technologies</strong>.  
+            <br><br>
+            My goal is to continuously learn, collaborate, and build meaningful solutions that make a difference. Let’s build something amazing together!
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

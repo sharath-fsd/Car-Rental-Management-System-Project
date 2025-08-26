@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Contact Messages</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    .back-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Form Messages</h1>
+  <table id="messageTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="4">Loading messages...</td></tr>
+    </tbody>
+  </table>
+
+  <a class="back-btn" href="Admin.html">← Back to Admin Panel</a>
+
+  <script>
+    fetch("http://localhost:8080/api/contact")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then(data => {
+        console.log("📨 Fetched messages:", data); // Debug
+        const tbody = document.querySelector("#messageTable tbody");
+        tbody.innerHTML = "";
+
+        if (!Array.isArray(data) || data.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='4'>❌ No messages found.</td></tr>";
+          return;
+        }
+
+        data.forEach((msg, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${msg.name || '-'}</td>
+            <td>${msg.email || '-'}</td>
+            <td>${msg.message || '-'}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => {
+        console.error("❌ Error fetching contact messages:", err);
+        document.querySelector("#messageTable tbody").innerHTML =
+          "<tr><td colspan='4'>❌ Failed to load messages. Is the server running?</td></tr>";
+      });
+  </script>
+
+</body>
+</html>

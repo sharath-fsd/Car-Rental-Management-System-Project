@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luxury Car Rental</title>
+  <link rel="stylesheet" href="Inside.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">CAR RENTAL</div>
+  <nav class="nav">
+    <a href="Interface.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Service.html">Service</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="top-selling">
+  <h2>Top Luxury Cars</h2>
+  <div class="cars" id="car-list"></div>
+</section>
+
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("http://localhost:8080/api/cars")
+    .then(res => res.json())
+    .then(cars => {
+      const container = document.getElementById("car-list");
+      container.innerHTML = "";
+
+      if (!cars.length) {
+        container.innerHTML = "<p>No cars available.</p>";
+        return;
+      }
+
+      cars.forEach(car => {
+        const imageUrl = `http://localhost:8080/uploads/${car.image}`;
+        const card = document.createElement("div");
+        card.className = "car-card";
+
+        card.innerHTML = `
+
+        <a href="Book_Now.html?carId=${car.id}&name=${encodeURIComponent(userName)}&mobile=${userMobile}&city=${userCity}&start-date=${userFromDate}&end-date=${userToDate}">
+           
+
+            <img src="${imageUrl}" alt="${car.name}" />
+            <div class="card-content">
+              <h3>${car.name} <span>(${car.brand})</span></h3>
+              <p>Fuel: ${car.fuel}</p>
+              <p>Seats: ${car.seats}</p>
+              <div class="price">₹${car.rentPerDay} <span>/ day</span></div>
+              <button type="button">Book Now</button>
+            </div>
+          </a>
+        `;
+
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      document.getElementById("car-list").innerHTML = "<p>❌ Unable to load cars.</p>";
+    });
+});
+</script> -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const userName = params.get("name") || "";
+  const userMobile = params.get("mobile") || "";
+  const userCity = params.get("city") || "";
+  const userFromDate = params.get("start-date") || "";
+  const userToDate = params.get("end-date") || "";
+
+  fetch("http://localhost:8080/api/cars")
+    .then(res => res.json())
+    .then(cars => {
+      const container = document.getElementById("car-list");
+      container.innerHTML = "";
+
+      if (!cars.length) {
+        container.innerHTML = "<p>No cars available.</p>";
+        return;
+      }
+
+      cars.forEach(car => {
+        const imageUrl = `http://localhost:8080/uploads/${car.image}`;
+        const linkParams = new URLSearchParams({
+          carId: car.id,
+          name: userName,
+          mobile: userMobile,
+          city: userCity,
+          "start-date": userFromDate,
+          "end-date": userToDate
+        }).toString();
+
+        const card = document.createElement("div");
+        card.className = "car-card";
+        card.innerHTML = `
+          <a href="Book_Now.html?${linkParams}">
+            <img src="${imageUrl}" alt="${car.name}" />
+            <div class="card-content">
+              <h3>${car.name} <span>(${car.brand})</span></h3>
+              <p>Fuel: ${car.fuel}</p>
+              <p>Seats: ${car.seats}</p>
+              <div class="price">₹${car.rentPerDay} <span>/ day</span></div>
+              <button type="button">Book Now</button>
+            </div>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      document.getElementById("car-list").innerHTML = "<p>❌ Unable to load cars.</p>";
+    });
+});
+</script>
+
+
+</body>
+</html>

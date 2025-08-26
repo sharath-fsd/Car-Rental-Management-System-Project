@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #757575;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: #333;
+      box-shadow: 0 2px 6px rgba(21, 20, 20, 0.4);
+    }
+
+    header .logo {
+      text-transform: uppercase;
+      font-weight: 900;
+      color: gold;
+      font-size: 20px;
+    }
+
+    header .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    header .nav a {
+      text-decoration: none;
+      color: #eee;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    header .nav a:hover {
+      color: gold;
+    }
+
+    .contact-section {
+      padding: 120px 20px 50px;
+      background-color: #757373;
+      min-height: 100vh;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .contact-info,
+    .contact-form {
+      flex: 1 1 350px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .contact-info p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .contact-info ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-info li {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 15px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form button {
+      background: #444;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: #222;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+      }
+
+      header {
+        flex-direction: column;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CAR RENTAL</div>
+  <nav class="nav">
+    <a href="Interface.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Service.html">Service</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <p>We’d love to hear from you! Reach out to us anytime.</p>
+      <ul>
+        <li>📞 Phone: +91 98765 43210</li>
+        <li>📧 Email: support007@luxurycarrental.com</li>
+        <li>📍 Address: 123 Main Street, Bangalore, India</li>
+      </ul>
+    </div>
+
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <form id="contactForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const contact = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      message: document.getElementById("message").value.trim()
+    };
+
+    if (!contact.name || !contact.email || !contact.message) {
+      alert("❗Please fill all fields.");
+      return;
+    }
+
+    fetch("http://localhost:8080/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(contact)
+    })
+      .then(response => {
+        if (response.ok) {
+          alert("✅ Thank you for contacting us! We’ll get back to you soon.");
+          document.getElementById("contactForm").reset();
+        } else {
+          alert("❌ Submission failed. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("⚠️ Server not responding. Try again later.");
+      });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    color: #868686;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: #222;
+    box-shadow: 0 2px 6px rgba(21, 20, 20, 0.4);
+}
+
+header .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f5c518;
+    text-transform: uppercase;
+}
+
+header .nav {
+    display: flex;
+    gap: 25px;
+}
+
+header .nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header .nav a:hover {
+    color: #f5c518;
+}
+
+/* Top Selling Section */
+.top-selling {
+    margin-top: 80px;
+    text-align: center;
+    padding: 30px 50px;
+}
+
+.top-selling h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+/* Car Grid Layout */
+.cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Car Card Design */
+.car-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #868686;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.car-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* Car Details */
+.car-card .card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.car-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.car-card h3 span {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+.car-card p {
+    font-size: 14px;
+    color: #777;
+    margin: 10px 0;
+}
+
+.car-card .price {
+    font-size: 22px;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.car-card .price span {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Book Now Button */
+.car-card button {
+    background: #f5c518;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.car-card button:hover {
+    background: #e4b000;
+}

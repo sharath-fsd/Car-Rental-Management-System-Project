@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMW Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: gold;
+      padding: 10px 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .nav {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+    header .nav li a {
+      color: gold;
+      text-decoration: none;
+      font-weight: normal;
+    }
+    header .nav li a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+    }
+    .left, .right { flex: 1 1 400px; }
+    .car-info img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .booking-details, .fare-details {
+      background: #fafafa;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: right;
+      margin-top: 10px;
+    }
+    button {
+      width: 100%;
+      background: gold;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #e6c200;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+    }
+    .notes {
+      background: #fffbe6;
+      padding: 10px;
+      border-left: 4px solid #ffc107;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-size: 0.95em;
+    }
+    .notes ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>CAR RENTAL</div>
+  <ul class="nav">
+    <li><a href="Interface.html">Home</a></li>
+    <li><a href="About.html">About</a></li>
+    <li><a href="Service.html">Service</a></li>
+    <li><a href="Contact.html">Contact</a></li>
+  </ul>
+</header>
+
+<div class="container">
+  <div class="left">
+    <div class="car-info">
+      <img src="" alt="Car Image" />
+      <div>
+        <h2><span id="car-name">Loading...</span> <span style="color:gold;" id="car-brand"></span></h2>
+        <p id="car-details">Loading car details...</p>
+      </div>
+    </div>
+
+    <div class="booking-details">
+      <h3>Booking Details</h3>
+      <p><strong>Name:</strong> <span id="name">-</span></p>
+      <p><strong>Mobile:</strong> <span id="mobile">-</span></p>
+      <p><strong>Pickup Date:</strong> <span id="start-date">-</span></p>
+      <p><strong>Drop Date:</strong> <span id="end-date">-</span></p>
+      <p><strong>City:</strong> <span id="city">-</span></p>
+      <p><strong>Days:</strong> <span id="days">1</span></p>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="fare-details">
+      <h3>Fare Details</h3>
+      <p>Base Fare/day: ₹<span id="base-fare">0</span></p>
+      <p>Delivery: ₹500</p>
+      <p>Deposit: ₹5,000</p>
+      <label>Fuel Plan:
+        <select id="fuelPlan">
+          <option value="exclude" selected>Fuel Excluded</option>
+          <option value="include">Fuel Included (+₹2,000/day)</option>
+        </select>
+      </label>
+      <div class="total">Total: ₹<span id="total">0</span></div>
+
+      <!-- Important Notes Section -->
+      <div class="notes">
+        <strong>Important Notes:</strong>
+        <ul>
+          <li>Carry a valid <strong>Driving License</strong>.</li>
+          <li>Bring your <strong>Aadhar Card</strong> for ID verification.</li>
+          <li>Fuel must be returned at the same level as delivered.</li>
+          <li>Late returns may incur extra charges.</li>
+        </ul>
+      </div>
+
+      <form action="Thank_You.html" method="get">
+        <button type="submit">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name") || "-";
+  const mobile = params.get("mobile") || "-";
+  const city = params.get("city") || "-";
+  const startDateStr = params.get("start-date");
+  const endDateStr = params.get("end-date");
+  const carId = params.get("carId");
+
+  // Set booking info
+  document.getElementById("name").textContent = name;
+  document.getElementById("mobile").textContent = mobile;
+  document.getElementById("city").textContent = city;
+  document.getElementById("start-date").textContent = startDateStr || "-";
+  document.getElementById("end-date").textContent = endDateStr || "-";
+
+  // Calculate number of days
+  const startDate = new Date(startDateStr);
+  const endDate = new Date(endDateStr);
+  let days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+  if (isNaN(days) || days < 1) days = 1;
+  document.getElementById("days").textContent = days;
+
+  const delivery = 500;
+  const deposit = 5000;
+  let baseFarePerDay = 12500; // default
+
+  const baseFareEl = document.getElementById("base-fare");
+  const totalEl = document.getElementById("total");
+  const fuelPlan = document.getElementById("fuelPlan");
+
+  fuelPlan.addEventListener("change", calculateTotal);
+
+  function calculateTotal() {
+    const fuelCharge = fuelPlan.value === "include" ? 2000 * days : 0;
+    const total = (baseFarePerDay * days) + delivery + deposit + fuelCharge;
+    totalEl.textContent = total.toLocaleString("en-IN");
+  }
+
+  if (carId) {
+    fetch(`http://localhost:8080/api/cars/${carId}`)
+      .then(res => res.json())
+      .then(car => {
+        baseFarePerDay = car.rentPerDay || 12500;
+        baseFareEl.textContent = baseFarePerDay.toLocaleString("en-IN");
+
+        // Car Info
+        document.querySelector(".car-info img").src = `http://localhost:8080/uploads/${car.image}`;
+        document.getElementById("car-name").textContent = car.name;
+        document.getElementById("car-brand").textContent = car.brand;
+        document.getElementById("car-details").innerHTML =
+          `🚗 ${car.name} | ⚙️ ${car.fuel} | 👥 ${car.seats} seats`;
+
+        calculateTotal();
+      })
+      .catch(err => {
+        console.error("❌ Failed to fetch car details", err);
+        alert("⚠️ Unable to load car details.");
+        calculateTotal(); // fallback
+      });
+  } else {
+    alert("⚠️ No car selected.");
+    calculateTotal();
+  }
+});
+</script>
+
+</body>
+</html>
